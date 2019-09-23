@@ -20,3 +20,14 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
+
+
+
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'IPC-Dev (f1434fee-2e37-4d87-91f3-d26e2c8da5ee)'
+    appType: 'webAppLinux'
+    WebAppName: 'edtestnode'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.war'
+    RuntimeStack: 'JAVA|11-java11'
